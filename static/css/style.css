@@ -1,0 +1,1229 @@
+/* Common styles for all screen sizes */
+/* Fonts */
+@font-face {
+    font-family: 'Bangers-Regular';
+    src: url('../fonts/Bangers-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'RussoOne-Regular';
+    src: url('../fonts/RussoOne-Regular.ttf') format('truetype');
+}
+
+/* Basics */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #EFEFEF;
+    background-image: url("../images/bg1.jpg");
+    background-color: black;
+    background-size: cover; 
+    -o-background-size:cover; 
+    -moz-background-size:cover; 
+    -webkit-background-size:cover; 
+    background-repeat: no-repeat;
+
+    background-position:center; 
+    background-attachment:fixed;
+}
+
+/* Darkened overlay */
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the alpha value to control darkness */
+    z-index: -1; /* Set a negative z-index to place the overlay below the content */
+}
+
+h1, h2 {
+    font-family: 'Bangers-Regular', sans-serif;
+    letter-spacing: 1px;
+}
+
+p {
+    font-family: 'RussoOne-Regular', sans-serif;
+}
+
+/* Navigation */
+/* Reset some default styles for the list */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navbar */
+nav {
+    background-color: #1a1a1a;
+    color: #EFEFEF;
+    display: flex; /* Display horizontally */
+    justify-content: center;
+}
+
+nav ul {
+    display: flex; /* Display the list items horizontally */
+}
+
+nav li {
+    padding: 10px;
+    font-family: 'RussoOne-Regular', sans-serif;
+}
+
+nav a {
+    text-decoration: none;
+    color: #EFEFEF;
+}
+
+#content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-height: 80%;
+    overflow-y: auto; /* Allow vertical scrolling if content exceeds the maximum height */
+}
+
+/* Scrollbar */
+#content::-webkit-scrollbar {
+    width: 12px;
+    background-color: #1a1a1a;
+}
+
+#content::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 1px; /* Higher value for rounded corner of the scrollbar thumb */
+}
+
+#content::-webkit-scrollbar-thumb:active {
+    background-color: #EFEFEF;
+}
+
+#content h1 {
+    font-weight: bold;
+}
+
+/* Transparent table (/players)*/
+table {
+    opacity: 0.8; /* Adjust the opacity value to control transparency */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Use an rgba value for background color to add transparency */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Add the shadow effect */
+}
+
+
+th, td {
+    padding: 10px;
+    color: #EFEFEF;
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+}
+
+table a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+/* /player */
+/* stats */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.stat {
+    padding: 5px;
+    margin: 5px;
+}
+
+.stat-name .stat-value {
+    font-family: 'RussoOne-Regular', sans-serif;
+    text-align: center;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #EFEFEF;
+}
+
+.wins {
+    margin-bottom: 17px;
+}
+
+.three-crown-wins {
+    margin-bottom: 10px;
+}
+
+/* /battles and /player */
+.battle {
+    position: relative;
+    border: 1px solid #EFEFEF;
+}
+
+.battle::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the alpha value to control darkness */
+    z-index: -1; /* Set a negative z-index to place the overlay below the content */
+}
+
+.timestamp {
+    display: block;
+    justify-content: center;
+    font-style: italic;
+}
+
+.game-mode {
+    display: block;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.player-score {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.player-left {
+    font-family: 'Bangers-Regular', sans-serif;
+    letter-spacing: 1px;
+    width: 35%;
+    float: left;
+}
+
+.player-right {
+    font-family: 'Bangers-Regular', sans-serif;
+    letter-spacing: 1px;
+    width: 35%;
+    float: right;
+}
+
+.score {
+    text-align: center;
+    width: 30%;
+    float: center;
+}
+
+.decks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.img-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.row-left {
+    float: left;
+    width: 50%;
+}
+
+.row-right {
+    float: right;
+    width: 50%;
+}
+
+.elixir-damage {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+#load-button {
+    font-family: 'RussoOne-Regular', sans-serif;
+    font-size: 18px;
+    color: #EFEFEF;
+    background-color: #007BFF;
+    border: none;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Form, Select Fields  */
+#game_mode_selection, #enemy_selection {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+form {
+    margin-bottom: 5px;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+}
+
+/* Smaller Phones 1 */
+@media only screen and (max-width: 332px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 280px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 320px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 35px;
+    }
+
+    .icon-width {
+        width: 28px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Smaller Phones 1 */
+@media only screen and (min-width: 332px) and (max-width: 351px) {
+    /* Change link color on hover */
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 280px;
+        padding: 5px;
+    }
+    #content h1 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 320px;
+    }
+
+    
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 35px;
+    }
+
+    .icon-width {
+        width: 28px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Smaller Phones 2 */
+@media only screen and (min-width: 351px) and (max-width: 375px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 290px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 340px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 37px;
+    }
+
+    .icon-width {
+        width: 30px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Medium Mobile Phones 1 - ex.: iPhone 12 Pro (390px) */
+@media only screen and (min-width: 375px) and (max-width: 390px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 300px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+    
+    .stat {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 360px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 40px;
+    }
+
+    .icon-width {
+        width: 32px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Medium Mobile Phones 2 - ex.: iPhone 12 Pro (390px) */
+@media only screen and (min-width: 390px) and (max-width: 410px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 300px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 365px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 40px;
+    }
+
+    .icon-width {
+        width: 32px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Large Mobile Phones 1 - ex.: iPhone 14 Pro Max (430px) or Pixel 7 & Samsung G S20 Ultra (412px)  */
+@media only screen and (min-width: 410px) and (max-width: 432px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 300px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 385px; /* this is random and prevents "automatic responsiveness", change later*/
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 42px;
+    }
+
+    .icon-width {
+        width: 35.5px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Large Mobile Phones 2 */
+@media only screen and (min-width: 432px) and (max-width: 479px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 300px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 410px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 42px;
+    }
+
+    .icon-width {
+        width: 35.5px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media only screen and (min-width: 479px) and (max-width: 599px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 320px;
+        padding: 5px;
+    }
+
+    #content h1 {
+        font-size: 34px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 418px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 47px;
+    }
+
+    .icon-width {
+        width: 35.5px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media only screen and (min-width: 599px) and (max-width: 767px) {
+    nav a:active {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 360px;
+        padding: 10px;
+    }
+
+    #content h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    table a:active {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 5px;
+        margin-bottom: 5px;
+        width: 538px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 62px;
+    }
+
+    .icon-width {
+        width: 46.7px;
+    }
+
+    #load-button:active {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection.clicked,
+    #enemy_selection.clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"].clicked {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1023px) {
+    nav a:hover {
+        background-color: #555;
+    }
+
+    #content {
+        min-width: 440px;
+        padding: 20px;
+    }
+
+    #content h1 {
+        font-size: 38px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    table a:hover {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 620px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 66.4167px;
+    }
+
+    .icon-width {
+        width: 50px;
+    }
+
+    #load-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields  */
+    #game_mode_selection:hover,
+    #enemy_selection:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"]:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media only screen and (min-width: 1023px) and (max-width: 1279px) {
+    nav a:hover {
+        background-color: #555;
+    }
+
+    #content {
+        padding: 20px;
+    }
+
+    #content h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    /* Apply hover styles only to links inside the table */
+    table a:hover {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 620px;
+    }
+
+    .player-left {
+        font-size: 20px;
+    }
+
+    .player-right {
+        font-size: 20px;
+    }
+
+    .card-width {
+        width: 66.4167px;
+    }
+
+    .icon-width {
+        width: 50px;
+    }
+
+    #load-button:hover {
+        background-color: #0056b3;
+    }
+
+    #game_mode_selection:hover,
+    #enemy_selection:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"]:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media only screen and (min-width: 1279px) {
+    nav a:hover {
+        background-color: #555;
+    }
+
+    #content {
+        padding: 20px;
+    }
+
+    #content h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    #content p {
+        font-size: 24px;
+        line-height: 1.5;
+    }
+
+    /* Apply hover styles only to links inside the table */
+    table a:hover {
+        color: #830505;
+        text-decoration: underline;
+    }
+
+    /* /player */
+    /* stats */
+    .stats {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .stat-name .stat-value {
+        font-size: 18px;
+        margin: 4px;
+        padding: 4px;
+    }
+
+    /* /battles and /player */
+    .battle {
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 620px;
+    }
+
+    .player-left {
+        font-size: 22px;
+    }
+
+    .player-right {
+        font-size: 22px;
+    }
+
+    .card-width {
+        width: 66.4167px;
+    }
+
+    .icon-width {
+        width: 50px;
+    }
+
+    #load-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Form, Select Fields */
+    #game_mode_selection:hover,
+    #enemy_selection:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    input[type="submit"]:hover {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
