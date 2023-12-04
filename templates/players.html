@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title%}
+- Spieler
+{% endblock %}
+{% block content %}
+<div id="content">
+    <h1>Spieler</h1>
+    <table class="table-bordered table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Kämpfe</th>
+                <th scope="col">Siegerate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                <tr>
+                    <td><a href="{{ url_for("player", player_tag=player["tag"]) }}">{{ player["name"] }}</a></td>
+                    <td>{{ player["1v1_battle_count"] }}</td>
+                    <td>{% if player["1v1_battle_count"] > 0 %}
+                        {{ (player["1v1_win_count"] / player["1v1_battle_count"] * 100) | round(2) }}%
+                        {% else %}
+                        N/A
+                        {% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

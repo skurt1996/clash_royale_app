@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+- Karten
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>Kartenstatistiken</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.game_mode_selection }}
+        <input value="Filtern" type="submit">
+    </form>
+    <table class="table-bordered table-sm">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Kämpfe</th>
+                <th scope="col">Siege</th>
+                <th scope="col">Siegesrate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards_data %}
+                <tr>
+                    <td><img src="{{ url_for("static", filename="images/cards/" + card["image"]) }}" alt="{{ card["name"] }}" width="80"></td>
+                    <td>{{ card["name"] }}</td>
+                    <td>{{ card["battle_count"] }}</td>
+                    <td>{{ card["win_count"] }}</td>
+                    <td>{% if card["battle_count"] == 0 %}
+                        N/A
+                        {% else %}
+                            {% if card["win_count"] == 0 %}
+                            0,00%
+                            {% else %}
+                            {{ (card["win_count"] / card["battle_count"] * 100) | round(2) }}%
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

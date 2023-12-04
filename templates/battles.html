@@ -1,0 +1,77 @@
+{% set game_modes_translations = {
+    "ClassicDecks_Friendly" : "Klassikdeck-Kampf",
+    "Draft_Competitive": "Dreifach-Auswahlkampf",
+    "DraftMode": "Auswahlkampf",
+    "Duel_1v1_Friendly": "Duell",
+    "PickMode" : "Mega-Auswahlherausforderung"
+} %}
+
+{% extends "base.html" %}
+{% block title %}
+- Kämpfe
+{% endblock %}
+{% block content %}
+<div id="content">
+  <h1>Kampfhistorie</h1>
+  <form method="POST">
+    {{ form.csrf_token }}
+    {{ form.game_mode_selection }}
+    <input value="Filtern" type="submit">
+  </form>
+    {% for battle in battles_data %}
+    <div class="battle">
+        <div class="battle-metadata">
+            <span class="timestamp">{{ battle["time"] }}</span>
+            <span class="game-mode">{{ game_modes_translations.get(battle["game_mode"]) }}</span>
+        </div>
+        <div class="player-score">
+          <span class="player-left">{{ battle["player1_name"] }}</span>
+          <span class="score"> {{ battle["player1_crowns"] }} - {{ battle["player2_crowns"] }} </span>
+          <span class="player-right">{{ battle["player2_name"] }}</span>
+        </div>
+        <div class="img-row">
+            <div class="row-left">
+                {% for card_img_path in battle["player1_deck_string"][:4] %}
+                    <span><img src="{{ card_img_path }}" alt="Karte" class="card-width"></span>
+                {% endfor %}
+            </div>
+            <div class="row-right">
+                {% for card_img_path in battle["player2_deck_string"][:4] %}
+                    <span><img src="{{ card_img_path }}" alt="Karte" class="card-width"></span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="img-row">
+            <div class="row-left">
+                {% for card_img_path in battle["player1_deck_string"][4:] %}
+                    <span><img src="{{ card_img_path }}" alt="Karte" class="card-width"></span>
+                    {% if loop.index == 4 or loop.index == 12 or loop.index == 20 %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row-right">
+                {% for card_img_path in battle["player2_deck_string"][4:] %}
+                    <span><img src="{{ card_img_path }}" alt="Karte" class="card-width"></span>
+                    {% if loop.index == 4 or loop.index == 12 or loop.index == 20 %}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="elixir-damage">
+            <span class="elixir"><img src="/static/images/elixir_leaked.webp" alt="Verschwendetes Elixier" class="icon-width"> {{ battle["player1_elixir_leaked"] }}</span>
+            <span class="dmg"><img src="/static/images/damage.webp" alt="Verursachter Schaden" class="icon-width"> {{ 4824 + (3052 * 2) - battle["player2_king_hp"] - battle["player2_princess1_hp"]
+                - battle["player2_princess2_hp"] }}</span>
+            <span class="elixir"><img src="/static/images/elixir_leaked.webp" alt="Verschwendetes Elixier" class="icon-width"> {{ battle["player2_elixir_leaked"] }}</span>
+            <span class="dmg"><img src="/static/images/damage.webp" alt="Verursachter Schaden" class="icon-width"> {{ 4824 + (3052 * 2) - battle["player1_king_hp"] - battle["player1_princess1_hp"]
+                - battle["player1_princess2_hp"] }}</span>
+        </div>
+    </div>
+    {% endfor %}
+    <div id="load-more">
+        <button id="load-button">Mehr Kämpfe laden</button>
+    </div>
+</div>
+<script src="/static/js/script.js"></script>
+{% endblock %}
