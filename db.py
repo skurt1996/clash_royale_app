@@ -17,7 +17,7 @@ ALLOWED_BATTLE_MODES = ["PickMode", "DraftMode", "Draft_Competitive", "ClassicDe
 
 logger = configured_logger("db.log")
 
-def create_connection(host="localhost", port=3306, user="root", password="Egsit22+", database="clash_royale"):
+def create_connection(host="localhost", port=3306, user="username", password="password", database="clash_royale"):
     """
     Creates a connection to the clash_royale database.
 
