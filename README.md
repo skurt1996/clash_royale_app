@@ -16,4 +16,5 @@ Leitfaden zum Starten der Anwendung:
 Achtung:
 1) Die Bilder, die in den html templates referenziert werden, sind nicht Teil dieses Code Bases. Diese können gerne bei mir erfragt werden. Die Funktionalität der Webanwendung wurde nicht ohne die statischen Files getestet.
 2) Sie sollten Benutzernamen, Passwörter und Tokens am Besten als Umgebungsvariablen speichern anstatt Sie in Klartext als Bestandteil ihres Codes zu haben. Der Code in dieser Repository dient nur zu Demonstrationszwecken.
-3) Diese Anwendung ist noch in Bearbeitung. Die Korrektheit und Sicherheit kann nicht garantiert werden.
+3) Die Dokumentationen für die einzelnen Python Methoden wurden per ChatGPT erstellt und nur grob auf Korrektheit überprüft.
+4) Diese Anwendung ist noch in Bearbeitung. Die Korrektheit und Sicherheit kann nicht garantiert werden.
