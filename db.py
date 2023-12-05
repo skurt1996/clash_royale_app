@@ -1,3 +1,4 @@
+import os
 import ast
 from datetime import datetime, timedelta
 
@@ -17,7 +18,7 @@ ALLOWED_BATTLE_MODES = ["PickMode", "DraftMode", "Draft_Competitive", "ClassicDe
 
 logger = configured_logger("db.log")
 
-def create_connection(host="localhost", port=3306, user="username", password="password", database="clash_royale"):
+def create_connection(host="localhost", port=3306, user=os.environ.get("MYSQL_USERNAME"), password=os.environ.get("MYSQL_PASSWORD"), database="clash_royale"):
     """
     Creates a connection to the clash_royale database.
 
@@ -230,7 +231,7 @@ def get_player_info(player_tag):
         query = "SELECT * FROM players WHERE tag = %s"
         result = select_with_error_handling(cnx, query, (player_tag,))
         if result:
-            column_names = ["id", "tag", "name", "last_seen", "1v1_battle_count", "1v1_win_count", "1v1_three_crowns_win_count"]
+            column_names = ["id", "tag", "name", "1v1_battle_count", "1v1_win_count", "1v1_three_crowns_win_count"]
             player_info = dict(zip(column_names, result[0]))
             return player_info
         else:
@@ -253,17 +254,17 @@ def get_player_tags():
 
 def get_players():
     """
-    Retrieves all tags, names and last_seen status from the "players" table.
+    Retrieves all tags, names etc. from the "players" table.
 
     Returns:
-        list: A list of tuples with tags, names, last_seen.
+        list: A list of tuples with tags, names,...
     """
     with create_connection() as cnx:
-        query = "SELECT tag, name, 1v1_battle_count, 1v1_win_count FROM players"
+        query = "SELECT tag, name, 1v1_battle_count, 1v1_win_count, 1v1_three_crowns_win_count FROM players"
         result = select_with_error_handling(cnx, query, ())
         if result:
             # return result as dict for better readability in template html
-            columns = ["tag", "name", "1v1_battle_count", "1v1_win_count"]
+            columns = ["tag", "name", "1v1_battle_count", "1v1_win_count", "1v1_three_crowns_win_count"]
             players = [dict(zip(columns, row)) for row in result]
             return players
         else:
@@ -420,12 +421,12 @@ def parse_princess_tower_hp(princess_tower_hp):
 
 def insert_members():
     """
-    Fetches clan members (tag, name, last_seen) from API, 
+    Fetches clan members (tag, name) from API, 
     inserts them into the database"s players table.
     """
     clan_members = api.fetch_clan_members()
     with create_connection() as cnx:
-        query = "INSERT INTO players (tag, name, last_seen) VALUES (%s, %s, %s)"
+        query = "INSERT INTO players (tag, name) VALUES (%s, %s)"
         insert_with_error_handling(cnx, query, clan_members, recursive_insertion=True)
 
 def insert_battle(cursor, battle_info):
@@ -655,7 +656,7 @@ def stats_versus(player_tag1, player_tag2, game_mode="ALL"):
  
 def main():
     # initialize_tables()
-    insert_members()
+    # insert_members()
     insert_new_battles()
     update_player_infos()
                  
