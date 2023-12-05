@@ -2,13 +2,14 @@
 This module is responsible for retrieving data from the clash royale API.
 Module is used by db.py to write retrieved data to the database.
 """
+import os
 from datetime import datetime
 
 import requests
 
 from utils import iso8601_to_datetime
 
-API_TOKEN = ""
+API_TOKEN = os.environ.get("CLASH_ROYALE_API_TOKEN")
 API_URL = "https://api.clashroyale.com/v1"
 HEADERS = {"Authorization": "Bearer " + API_TOKEN}
 
@@ -23,7 +24,7 @@ def fetch_clan_members(clan_tag=CLAN_TAG):
         clan_tag (str): The clan"s tag. Defaults to CLAN_TAG.
 
     Returns:
-        list: A list of tuples representing the clan members. Each tuple contains the member"s tag, name and lastSeen status.
+        list: A list of tuples representing the clan members. Each tuple contains the member"s tag, name.
     """
     END_POINT = "/clans/%23" + clan_tag[1:] + "/members"
     clan_members = []
@@ -31,7 +32,7 @@ def fetch_clan_members(clan_tag=CLAN_TAG):
         with requests.get(API_URL + END_POINT, headers=HEADERS) as response:
             response.raise_for_status()
             json_data = response.json()
-            clan_members = [(item["tag"], item["name"], iso8601_to_datetime(item["lastSeen"], "%Y%m%dT%H%M%S.%fZ")) for item in json_data["items"]]
+            clan_members = [(item["tag"], item["name"]) for item in json_data["items"]]
             return clan_members
     except requests.exceptions.RequestException  as e:
         print("Error: ", str(e))
