@@ -7,7 +7,7 @@ from utils import replace_card_names_by_img_path, initialize_cards_data, update_
 from forms import GameModeSelection, GameModeEnemySelection
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "iCfQqzVEqH8EqsyL_ycHkuBBZOmS3jSDtjtzh8zREqU"
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 @app.route("/", methods=["GET"])
 def index():
