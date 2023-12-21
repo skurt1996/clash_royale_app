@@ -1,23 +1,14 @@
+"""
+This module contains some utility functions.
+"""
+
 from datetime import datetime
 import ast
 import os
 
 def iso8601_to_datetime(iso8601_date, datetime_format):
     """
-    Convert an ISO 8601 formatted date string to a datetime object.
-
-    Args:
-        iso8601_date (str): The ISO 8601 formatted date string.
-
-    Returns:
-        str: A string representation of the converted datetime object.
-
-    Raises:
-        ValueError: If the input string is not in a valid ISO 8601 format.
-
-    Example:
-        iso8601_to_datetime('20210630T153000.000Z')
-        Output: '2021-06-30 15:30:00'
+    Converts an ISO 8601 formatted date string to a datetime object and returns it.
     """
     return str(datetime.strptime(iso8601_date, datetime_format))
 
@@ -25,12 +16,6 @@ def replace_card_names_by_img_path(deck_string):
     """
     Given a deck string containing a list of card names, this function replaces each card name
     with a corresponding image path while applying lowercase, space-to-underscore, and character removal transformations.
-    
-    Args:
-        deck_string (str): A string representing a list of card names.
-
-    Returns:
-        list: A list of image paths corresponding to the replaced card names.
     """
     deck_list = ast.literal_eval(deck_string)
     deck_list = ["/static/images/cards/" + card.lower().replace(" ", "_").replace("'", "").replace("[", "").replace("]", "") + ".webp" for card in deck_list]
@@ -38,13 +23,7 @@ def replace_card_names_by_img_path(deck_string):
 
 def initialize_cards_data(card_files):
     """
-    Initialize a list of card data dictionaries based on a list of card files.
-
-    Parameters:
-        card_files (list): A list of card files.
-
-    Returns:
-        list: A list of dictionaries representing card data.
+    Initializes a list of card data dictionaries based on a list of card files and returns it.
     """
     cards_data = []
     for card_file in card_files:
@@ -54,14 +33,7 @@ def initialize_cards_data(card_files):
 
 def update_cards_data_stats(battles_data, cards_data):
     """
-    Update the battle and win counts in the cards_data based on battles_data.
-
-    Parameters:
-        battles_data (list): A list of dictionaries representing battle data.
-        cards_data (list): A list of dictionaries representing card data to be updated.
-
-    Returns:
-        None
+    Updates the battle and win counts in the cards_data based on battles_data.
     """
     for battle in battles_data:
         player1_deck_list = ast.literal_eval(battle["player1_deck_string"])
@@ -77,13 +49,6 @@ def update_cards_data_stats(battles_data, cards_data):
 def update_battle_count(deck_list, cards_data):
     """
     Update the battle count in cards_data based on the given deck_list.
-
-    Parameters:
-        deck_list (list): A list of card names representing a deck.
-        cards_data (list): A list of dictionaries representing card data to be updated.
-
-    Returns:
-        None
     """
     for card_name in deck_list:
         for card_data in cards_data:
@@ -93,13 +58,6 @@ def update_battle_count(deck_list, cards_data):
 def update_win_count(winning_deck_list, cards_data):
     """
     Update the win count in cards_data based on the given winning_deck_list.
-
-    Parameters:
-        winning_deck_list (list): A list of card names representing a winning deck.
-        cards_data (list): A list of dictionaries representing card data to be updated.
-
-    Returns:
-        None
     """
     for card_name in winning_deck_list:
         for card_data in cards_data:
