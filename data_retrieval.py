@@ -2,6 +2,7 @@
 This module is responsible for retrieving data from the clash royale API.
 Module is used by db.py to write retrieved data to the database.
 """
+
 import os
 from datetime import datetime
 
