@@ -2,6 +2,7 @@
 This module is responsible for the interaction with the database.
 Module is used by run.py to write to access the database.
 """
+
 import os
 import ast
 from datetime import datetime, timedelta
