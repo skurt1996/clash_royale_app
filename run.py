@@ -1,3 +1,7 @@
+"""
+This module serves as the backend of this web application. It defines routes and handles HTTP requests.
+"""
+
 import os
 
 from flask import Flask, render_template, abort, request, jsonify
