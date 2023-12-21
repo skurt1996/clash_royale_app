@@ -1,7 +1,12 @@
+"""
+In this module forms for our HTML templates are defined.
+"""
+
 from flask_wtf import FlaskForm
 from wtforms import SelectField
 
 class GameModeSelection(FlaskForm):
+    # Form to select game mode
     game_mode_selection = SelectField('game_mode', choices= [
         ("ALL", "Alle Kampfmodi"),
         ("Draft_Competitive", "Dreifach-Auswahlkampf"),
@@ -12,5 +17,6 @@ class GameModeSelection(FlaskForm):
     ])
 
 class GameModeEnemySelection(GameModeSelection):
-    # choices to be set in /player routing method in run.py
+    # Form to select game mode and enemy
+    # Choices to be set in /player routing method in run.py
     enemy_selection = SelectField('enemy', choices =[])
